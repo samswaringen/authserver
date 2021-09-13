@@ -5,8 +5,7 @@ var bodyParser = require("body-parser")
 const cors = require('cors');
 const app = express();
 var jsonParser = bodyParser.json()
-const fs = require('fs')
-const https = require('https')
+
 
 let port = process.env.PORT || 9002;
 
@@ -194,14 +193,6 @@ app.post('/logout', (req, res) => {
     res.send("Logout successful");
 });
 
-const httpServer = https.createServer(
-    {
-      key: fs.readFileSync(`./ssl/server.key`),
-      cert: fs.readFileSync(`./ssl/server.crt`)
-    },
-    app,
-  );
-
-httpServer.listen(port, function () {
-    console.log(`Running https on port ${port}`);
+app.listen(port, function () {
+    console.log(`Running on port ${port}`);
 });
