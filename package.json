@@ -5,8 +5,7 @@
   "main": "auth.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "concurrently -k npm:server:*",
-    "server:auth": "nodemon auth.js"
+    "server": "nodemon auth.js"
   },
   "author": "sam swaringen",
   "license": "MIT",
