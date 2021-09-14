@@ -10,8 +10,8 @@ var jsonParser = bodyParser.json()
 let port = process.env.PORT || 9002;
 
 
-const accessSecret = "";
-const refreshSecret = "";
+const accessSecret = process.env.JWT_ACCESS_KEY;
+const refreshSecret = process.env.JWT_REFRESH_KEY;;
 
 const refreshTokens = [];
 
