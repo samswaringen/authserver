@@ -10,8 +10,8 @@ var jsonParser = bodyParser.json()
 let port = process.env.PORT || 9002;
 
 
-const accessSecret = "rzWLXa0b0ce5SUoSZF1LHvilKapkg9AkgoQjmi8tLhCphiq5Rw3qrtkhQ7vjy88uH3epB4N7pb1lRt";
-const refreshSecret = "yxT9xaTJGFL777ZiT6XrjXSOJ8pXDugk8Ic1nkQWOzsjQ5CdLRQswP8Wv6DmOC6Lbml8gXDpOFFQEf";
+const accessSecret = "";
+const refreshSecret = "";
 
 const refreshTokens = [];
 
