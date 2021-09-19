@@ -133,6 +133,7 @@ app.post('/createemp', jsonParser, async (req, res) => {
     //filter user from the users array by username and password
     let employee = await dal.createEmp(
         input.id,
+        input.dateTime,
         input.role,
         input.name,
         input.username,
@@ -180,7 +181,6 @@ app.post('/token', (req, res) => {
 });
 
 app.post('/number', jsonParser, async(req,res)=>{
-    console.log("req number",req)
     let number = await dal.getNumber(req.body.id)
     console.log("number",number)
     res.send(number)
