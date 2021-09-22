@@ -17,12 +17,10 @@ connect()
 
 async function listDatabases(client){
     const databaseList = await client.db().admin().listDatabases();
-    console.log("databases:",databaseList.databases)
 }
 
 
 function create(id,dateTime,routing,name,username,email,password,chkAcctNumber,savAcctNumber){
-    console.log(id,name,username,email,password,chkAcctNumber,savAcctNumber )
     return new Promise((resolve,reject)=>{
         let collection = db.collection('accounts')
         const doc = {
@@ -60,7 +58,6 @@ function create(id,dateTime,routing,name,username,email,password,chkAcctNumber,s
                 {transID : `${id}opensave`, username: username, dateTime:dateTime, info : {acctType: "savings",acctNumber: savAcctNumber, type:'deposit',amount:0, newBalance: 0}}
             ]
         }
-        console.log("doc:",doc)
         collection.insertOne(doc, {w:1}, function(err,result){
             err ? reject(err) : resolve(doc)
         })
@@ -74,16 +71,13 @@ function getOneForAuth(username, password){
         const accounts = db
                 .collection('accounts')
                 .findOne({username : {$eq:username},password : {$eq:password}},function(err,doc){
-                    console.log("doc:",doc)
                     if(doc){
                         let newDoc = {exists:true, username:username, role: doc.role }
                         doc = newDoc
-                        console.log("doc",doc)
                         err ? reject(err) : resolve(doc)
                     }else{
                         let newDoc = {exists:false, username:null, role: null }
                         doc = newDoc
-                        console.log("doc",doc)
                         err ? reject(err) : resolve(doc)
                     }  
                 })  
@@ -95,16 +89,13 @@ function getOneForGoogleAuth(email){
         const accounts = db
                 .collection('accounts')
                 .findOne({email : {$eq:email}},function(err,doc){
-                    console.log("doc:",doc)
                     if(doc){
                         let newDoc = {exists:true, username:doc.username, role: doc.role }
                         doc = newDoc
-                        console.log("doc",doc)
                         err ? reject(err) : resolve(doc)
                     }else{
                         let newDoc = {exists:false, username:null, role: null }
                         doc = newDoc
-                        console.log("doc",doc)
                         err ? reject(err) : resolve(doc)
                     }  
                 })  
@@ -117,16 +108,13 @@ function getOneForAuthEmp(username, password){
         const accounts = db
                 .collection('employees')
                 .findOne({username : {$eq:username},password : {$eq:password}},function(err,doc){
-                    console.log("doc:",doc)
                     if(doc){
                         let newDoc = {exists:true, username:username, role: doc.role }
                         doc = newDoc
-                        console.log("doc",doc)
                         err ? reject(err) : resolve(doc)
                     }else{
                         let newDoc = {exists:false, username:null, role: null }
                         doc = newDoc
-                        console.log("doc",doc)
                         err ? reject(err) : resolve(doc)
                     }  
                 })  
@@ -139,16 +127,13 @@ function getOneForAuthATM(username, pin){
         const accounts = db
                 .collection('accounts')
                 .findOne({username : {$eq:username},pin : {$eq:pin}},function(err,doc){
-                    console.log("doc:",doc)
                     if(doc){
                         let newDoc = {exists:true, username:username, role: doc.role }
                         doc = newDoc
-                        console.log("doc",doc)
                         err ? reject(err) : resolve(doc)
                     }else{
                         let newDoc = {exists:false, username:null, role: null }
                         doc = newDoc
-                        console.log("doc",doc)
                         err ? reject(err) : resolve(doc)
                     }  
                 })  
@@ -156,7 +141,6 @@ function getOneForAuthATM(username, pin){
 }
 
 function createEmp(id,dateTime,role,name,username,email,password){
-    console.log("id,dateTime,role,name,username,email,password",id,dateTime,role,name,username,email,password)
     return new Promise((resolve,reject)=>{
         let collection = db.collection('employees')
         let currentDate = new Date()
@@ -169,7 +153,6 @@ function createEmp(id,dateTime,role,name,username,email,password){
 }
 
 function getNumber(id){
-    console.log("id in dal:",id)
     return new Promise((resolve,reject)=>{
         const accounts = db
                 .collection('internal')
