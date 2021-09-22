@@ -35,8 +35,34 @@ app.post('/login', jsonParser, async (req, res) => {
 
     if (user.exists === true) {
         // generate an access token
-        const accessToken = jwt.sign({ username: user.username, role: user.role }, accessSecret, { expiresIn: '15m' });
-        const refreshToken = jwt.sign({ username: user.username, role: user.role }, refreshSecret);
+        const accessToken = jwt.sign({ username: user.username, role: user.role, googleAuth: false }, accessSecret, { expiresIn: '15m' });
+        const refreshToken = jwt.sign({ username: user.username, role: user.role, googleAuth: false }, refreshSecret);
+
+        refreshTokens.push(refreshToken);
+
+        res.json({
+            accessToken,
+            refreshToken
+        });
+    } else {
+        res.send('Username or password incorrect');
+    }
+});
+
+app.post('/loginGoogle', jsonParser, async (req, res) => {
+    // read username and password from request body
+    const { email } = req.body;
+    //verify google token
+
+    //then
+    //filter user from the users array by username and password
+    const user = await dal.getOneForGoogleAuth(email)
+    console.log("user in dal:",user)
+
+    if (user.exists === true) {
+        // generate an access token
+        const accessToken = jwt.sign({ username: user.username, role: user.role, googleAuth: true }, accessSecret, { expiresIn: '15m' });
+        const refreshToken = jwt.sign({ username: user.username, role: user.role, googleAuth: true }, refreshSecret);
 
         refreshTokens.push(refreshToken);
 
@@ -57,8 +83,8 @@ app.post('/loginemp', jsonParser, async (req, res) => {
 
     if (user.exists === true) {
         // generate an access token
-        const accessToken = jwt.sign({ username: user.username, role: user.role }, accessSecret, { expiresIn: '15m' });
-        const refreshToken = jwt.sign({ username: user.username, role: user.role }, refreshSecret);
+        const accessToken = jwt.sign({ username: user.username, role: user.role, googleAuth: false }, accessSecret, { expiresIn: '15m' });
+        const refreshToken = jwt.sign({ username: user.username, role: user.role, googleAuth: false }, refreshSecret);
 
         refreshTokens.push(refreshToken);
 
@@ -80,8 +106,8 @@ app.post('/loginatm', jsonParser, async (req, res) => {
 
     if (user.exists === true) {
         // generate an access token
-        const accessToken = jwt.sign({ username: user.username, role: user.role }, accessSecret, { expiresIn: '15m' });
-        const refreshToken = jwt.sign({ username: user.username, role: user.role }, refreshSecret);
+        const accessToken = jwt.sign({ username: user.username, role: user.role, googleAuth: false }, accessSecret, { expiresIn: '15m' });
+        const refreshToken = jwt.sign({ username: user.username, role: user.role, googleAuth: false }, refreshSecret);
 
         refreshTokens.push(refreshToken);
 
