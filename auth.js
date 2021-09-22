@@ -71,7 +71,7 @@ app.post('/loginGoogle', jsonParser, async (req, res) => {
             refreshToken
         });
     } else {
-        res.send('Username or password incorrect');
+        res.send('make account');
     }
 });
 
@@ -122,7 +122,7 @@ app.post('/loginatm', jsonParser, async (req, res) => {
 
 app.post('/createuser', jsonParser, async (req, res) => {
     // read username and password from request body
-    const { input } = req.body;
+    const { input, google } = req.body;
     console.log("input",input)
     //filter user from the users array by username and password
     let account = await dal.create(
@@ -138,9 +138,14 @@ app.post('/createuser', jsonParser, async (req, res) => {
         )
     if (account) {
         // generate an access token
-        const accessToken = jwt.sign({ username: input.username, role: "" }, accessSecret, { expiresIn: '15m' });
-        const refreshToken = jwt.sign({ username: input.username, role: "" }, refreshSecret);
-    
+        let accessToken, refreshToken;
+        if(google === false){
+            accessToken = jwt.sign({ username: input.username, role: "",  googleAuth: false }, accessSecret, { expiresIn: '15m' });
+            refreshToken = jwt.sign({ username: input.username, role: "",  googleAuth: false }, refreshSecret);
+        }else{
+            accessToken = jwt.sign({ username: input.username, role: "",  googleAuth: true }, accessSecret, { expiresIn: '15m' });
+            refreshToken = jwt.sign({ username: input.username, role: "",  googleAuth: true }, refreshSecret);
+        }
         refreshTokens.push(refreshToken);
     
         res.json({
