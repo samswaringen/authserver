@@ -181,4 +181,4 @@ function getNumber(id){
     })
 }
 
-module.exports = {create, getOneForAuth, getOneForAuthATM, getOneForAuthEmp, createEmp, getNumber}
+module.exports = {create, getOneForAuth, getOneForGoogleAuth, getOneForAuthATM, getOneForAuthEmp, createEmp, getNumber}
