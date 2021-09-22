@@ -89,6 +89,27 @@ function getOneForAuth(username, password){
                 })  
     })
 }
+function getOneForGoogleAuth(email){
+    return new Promise((resolve,reject)=>{
+        console.log('getOneForGoogleAuth running', email)
+        const accounts = db
+                .collection('accounts')
+                .findOne({email : {$eq:email}},function(err,doc){
+                    console.log("doc:",doc)
+                    if(doc){
+                        let newDoc = {exists:true, username:doc.username, role: doc.role }
+                        doc = newDoc
+                        console.log("doc",doc)
+                        err ? reject(err) : resolve(doc)
+                    }else{
+                        let newDoc = {exists:false, username:null, role: null }
+                        doc = newDoc
+                        console.log("doc",doc)
+                        err ? reject(err) : resolve(doc)
+                    }  
+                })  
+    })
+}
 
 function getOneForAuthEmp(username, password){
     return new Promise((resolve,reject)=>{
