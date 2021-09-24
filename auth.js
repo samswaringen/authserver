@@ -15,7 +15,7 @@ const swaggerOptions = {
         version: '1.0.0',
       },
     },
-    apis: ['authlocal.js'], // files containing annotations as above
+    apis: ['auth.js'], // files containing annotations as above
   };
   
   const swaggerDocs = swaggerJsdoc(swaggerOptions);
