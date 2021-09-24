@@ -9,7 +9,7 @@
   },
   "author": "sam swaringen",
   "license": "MIT",
-  "dependencies": {
+   "dependencies": {
     "@apollo/federation": "^0.32.0",
     "@apollo/gateway": "^0.41.0",
     "apollo-server": "^3.3.0",
@@ -21,8 +21,10 @@
     "express-graphql": "^0.12.0",
     "express-jwt": "^6.1.0",
     "faker": "^5.1.0",
+    "firebase": "^9.0.2",
     "formik": "^2.2.9",
     "fs": "0.0.1-security",
+    "google-auth-library": "^7.9.2",
     "graphql": "^15.5.1",
     "helmet": "^4.6.0",
     "http": "0.0.1-security",
@@ -30,8 +32,10 @@
     "jsonwebtoken": "^8.5.1",
     "lowdb": "^1.0.0",
     "mongodb": "^4.1.0",
-    "mongoose": "^5.13.7",
+    "mongoose": "^5.13.9",
     "superagent": "^6.1.0",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.1.6",
     "universal-cookie": "^4.0.4",
     "wait-on": "^6.0.0"
   },
