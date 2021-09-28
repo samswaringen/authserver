@@ -163,5 +163,22 @@ function getNumber(id){
 
     })
 }
+function editNumber(id, item){
+    return new Promise((resolve,reject)=>{
+        console.log('editNumber running')
+        const accounts = db
+                .collection('internal')
+                .replaceOne({id : {$eq:id}}, item, function(err,doc){
+    
+                    if(doc){
+                        err ? reject(err) : resolve(doc)
+                    }else{
+                        doc = {name:`Number doesn't exist!`}
+                        resolve(doc)
+                    }
+                })
 
-module.exports = {create, getOneForAuth, getOneForGoogleAuth, getOneForAuthATM, getOneForAuthEmp, createEmp, getNumber}
+    })
+}
+
+module.exports = {create, getOneForAuth, getOneForGoogleAuth, getOneForAuthATM, getOneForAuthEmp, createEmp, getNumber, editNumber}
