@@ -307,8 +307,8 @@ app.post('/createuser', jsonParser, async (req, res) => {
             accessToken = jwt.sign({ username: input.username, role: "",  googleAuth: false }, accessSecret, { expiresIn: '15m' });
             refreshToken = jwt.sign({ username: input.username, role: "",  googleAuth: false }, refreshSecret);
         }else{
-            accessToken = jwt.sign({ username: input.username, role: "",  googleAuth: true }, accessSecret, { expiresIn: '15m' });
-            refreshToken = jwt.sign({ username: input.username, role: "",  googleAuth: true }, refreshSecret);
+            accessToken = jwt.sign({ username: input.username, role: "customer",  googleAuth: true }, accessSecret, { expiresIn: '15m' });
+            refreshToken = jwt.sign({ username: input.username, role: "customer",  googleAuth: true }, refreshSecret);
         }
         refreshTokens.push(refreshToken);
         let routObj = {id:'routing', number: input.routing, equation: 3}
