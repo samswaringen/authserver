@@ -311,6 +311,10 @@ app.post('/createuser', jsonParser, async (req, res) => {
             refreshToken = jwt.sign({ username: input.username, role: "",  googleAuth: true }, refreshSecret);
         }
         refreshTokens.push(refreshToken);
+        let routObj = {id:'routing', number: input.routing, equation: 3}
+        let acctObj = {id:'accounts', number:input.savAcctNumber, equation: 13}
+        await dal.editNumber('routing', routObj)
+        await dal.editNumber('accounts', acctObj)
     
         res.json({
                 accessToken,
