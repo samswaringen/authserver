@@ -29,7 +29,7 @@ const refreshSecret = process.env.JWT_REFRESH_KEY;
 
 const refreshTokens = [];
 
-const allowedOrigins = ['https://samantics.tez.page', 'https://sam-swaringen-atm-front-end.herokuapp.com'];
+const allowedOrigins = ['http://localhost:3000', 'https://samantics.tez.page', 'https://sam-swaringen-atm-front-end.herokuapp.com'];
 
 const options = {
   origin: allowedOrigins
